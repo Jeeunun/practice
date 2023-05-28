@@ -379,3 +379,94 @@ s1.discard(6)
 print(s1)
 
 # ================================================================
+# <제어문 - if문>
+#   1. if조건문 : 실행문 else : 실행문 or if조건문: 실행문 elif조건문: 실행문, 
+#   2. if조건문을 한줄로 쓸 수 있다.
+#   - if 조건문: print() 
+#   - 두줄 이상의 코드를 한즐로 쓸 수 있다.
+#   - if 조건문:print() ; else:print()
+#   3. 조건부표현식(삼항연산자)
+a = 10
+print('A는 10보다 큽니다.')if a > 10 else print('A는 10보다 작습니다.')
+#   4. 문제 : 얼마를 가지고 있습니까?를 변수에 담고, 만약 30,000원 이상이 있으면, 택시를 타고 가시오를 출력. 그렇지 않으면, 걸어가시오를 출력.
+money = int(input("얼마를 가지고 있습니까? : "))
+if money >= 30000:
+    print("택시를 타고 가시오.")
+else :
+    print("걸어가시오.")
+#   5. 문제: 1~10까지 담고 있는 하나의 리스트가 있다. 키보드로 정수 하나를 입력 받아 위 리스트에 그 값이 있는지 알아내라.
+lista=[1,2,3,4,5,6,7,8,9,10]
+num = int(input("숫자를 입력하세요: "))
+if num in lista:
+    print("값이 있습니다.")
+else:
+    print("값이 없습니다.")
+#   6. 문제 : 짐의 무게를 input으로 설정하고 수수료 설정
+numinput = float(input("짐의 무게를 입력하세요: "))
+money = 10000*(numinput//10)
+if numinput >=10:
+    print("짐의 무게는 %f이고, 수수료는 %d 입니다." %(numinput,money))
+    print(f"짐의 무게는 {numinput}이고 수수료는 {money}입니다.")
+
+# <제어문 - for문>
+#   1. for 변수 in 반복가능한 자료형(list, dictionary, set)
+#   2. 반복가능한 자료형 => range(a,b) a이상 b미만 숫자를 담은 객체
+#   3. 문제) 홀수인 값에 2를 곱한 값만을 list로 만들어라
+lista = []
+for a in range(1,11):
+    if a %2 != 0 :
+        lista.append(a*2)
+print(lista)
+#   4. 문제) for문을 이용해서 list 만들기
+lista = []
+for a in range(1,11):
+    if a not in lista:
+        lista.append(a)    
+print(lista)
+
+# <제어문 - while문>
+#   1. while 조건식 : ~실행문 => 조건식이 참일 때 실행문 무한반복.
+#   2. 문제 ) 1~1000까지만 프린트 되도록 반복
+a=1
+while a<1001:
+    print(str(a)+'번째 반복')
+    a+=1
+
+#   3. 문제 ) 1~1000 까지 더한 값과 평균값 출력
+# 내가 푼 것
+a=1
+lista=[]
+while a<1001:
+    lista.append(a)
+    a+=1
+print(sum(lista))
+print(sum(lista)/len(lista))
+#  같이 푼 것
+a=1
+b=0
+while a <1001:
+    b+=a
+    a+=1
+print(b)
+print(b/1000)
+
+#   4. break와 continue
+
+#   5. 문제) 나만의 리스트 만들기
+#   리스트의 크기를 키보드로 입력받아 그 크기만큼 임의 숫자를 리스트에 추가하고
+#   리스트의 크기와 값 전체를 출력하라.
+listsize = int(input("리스트의 크기를 입력하세요: "))
+a = 1
+lista=[]
+while a<listsize:
+    listvalue = input("리스트의 값을 입력하세요: ")
+    lista.append(listvalue)
+    a+=1
+print(lista)
+print(len(lista))
+
+#   6. 문제) 로또 번호 생성기
+#   리스트의 크기가 6개인 리스트를 만들어서, 오늘의 로또번호를 만드어보자.
+#   랜덤의 값을 추출하는 파이썬 라이브러리 -> random
+import random
+random.randint(1,45)
