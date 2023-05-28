@@ -69,11 +69,11 @@ print(a.index('o'))
 #   없는 문자를 찾을 경우 -1 return
 whatyouwant = input("아무런 문자나 입력해주세요")
 search = input ("찾고자 하는 문자 1개만 입력해주세요")
-result = whatyouwant.find(search)
+result = whatyouwant.find(search) 
 if result == -1:
     print("찾고자 하는 값이 없습니다")
 else:
-    print("요청하신 문자는 %d 번째에 있습니다" % result)
+    print("요청하신 문자는 %d 번째에 있습니다" % (result+1))
 
 # 문. 연습문제
 # 3개의 단어를 키보드로 입력 받아 각 단어의 첫글자를 추출 후 단어의 약자를 출력하라
@@ -176,7 +176,7 @@ print(lastvalue) #김갑순
             #비교
             #print(lista.pop()) #김철수
 
-#   10. 리스트형 -> 문자열 변환
+#   10. 리스트형 -> 문자열 변환 : '구분자'.join()
 lista = ["hello","world","python"]
 st1 = ""
 st2 = st1.join(lista)
@@ -186,7 +186,7 @@ print(st2)    #helloworldpython
         #         st1 = st1 + a
         # print(st1)
 
-#   11. 문자열 -> 리스트형 변환
+#   11. 문자열 -> 리스트형 변환 : list(문자열) or list.split('구분자')
 sta = "hello world python"
 mySta1 = list(sta)
 print(mySta1)   #['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', ' ', 'p', 'y', 't', 'h', 'o', 'n']
@@ -281,3 +281,101 @@ print(minA)
 # # lista[0]=1, lista[1]=3, lista[2]=9, lista[3]=3, lista[4]=5, lista[5]=6, lista[6]=9, lista[7]=9
 # # if 9 in lista -> lista.remove(9) -> remove lista[2],[6],[7]
 # # print(lista) = [1,3,3,5,6]
+
+# ===================================================================
+# <tuple형>
+
+# ====================================================================
+# <dictionary형> dict = {'key' : 'value', 'key2' : value2',....}
+#   1. 'key'를 이용한 'value'출력
+dic1 = {'이름' : '홍길동', '나이' : 25, '성별' : '남'}
+print(dic1['이름'])             #인덱스활용 = 홍길동
+print(dic1.get('이름'))         #함수 활용 = 홍길동
+
+#   2. 'key'를 이용한 'value'추가(재정의) / 삭제(del)
+dic1 = {'이름' : '홍길동', '나이' : 25, '성별' : '남'}
+dic1['신분'] = '학생'
+print(dic1) #{'이름': '홍길동', '나이': 25, '성별': '남', '신분': '학생'}
+
+dic1 = {'이름' : '홍길동', '나이' : 25, '성별' : '남'}
+del dic1['성별']
+print(dic1) #{'이름': '홍길동', '나이': 25}
+
+#   3. 'key'목록 출력 : dict.keys()
+
+#   4. 'value'목록 출력 : dict.values()
+
+#   5. dictionary의 확장 : 변수.update()   cf.list는 변수.extend()
+dic1 = {"a": 1, "b":2, "c":3}
+dic2 = {"a": 2, "d":4 , "f":5}
+dic1.update(dic2)
+print(dic1)     #{'a': 2, 'b': 2, 'c': 3, 'd': 4, 'f': 5} 
+
+#   6. 연습문제
+# 딕셔너리로 변환해서 출력해보자. 예를들어 'A':2, 'B':1, 'O':2 이렇게 출력되도록 코딩해보자. dic = {key : value}
+# 방법1
+lista = ['A','A','B','O','O','AB','AB']
+dicta = {}
+
+for a in lista :
+    if a not in dicta.keys():
+        dicta[a] = 1    
+    else :
+        dicta[a] = dicta[a] + 1
+print(dicta)
+
+# 방법2
+for a in lista :
+    if a not in dicta.keys():
+        dicta[a] = lista.count(a)    
+print(dicta)
+
+# =======================================================
+# <set형>
+#   1. 딕셔너리와 마찬가지로, index X와 중복 X
+#   - 중복제거 : 중복을 제거하기 위해 리스트를 set으로 변환 시키기도 함
+#   - index 사용불가 : 왜? 순서가 없어서
+#   2. 집합의 개수를 구하는 함수 : len()
+#   3. 문제 : 이 반 학생들의 혈액형 종류는 총 몇 개 인가?
+lista = ['A','A','B','O','AB','B']
+bloodtype = set(lista)
+print(len(bloodtype))
+
+#   4. 집합
+#       - 합집합
+s1 = set([1,2,3,4,5,6])
+s2 = set([4,5,6,7,8])
+#       s3 = s1 | s2   #|는 or를 의미
+s3 = s1.union(s2)       #s3= s1 | s2
+print(s3)
+#       - 교집합
+#           & 는 and를 의미 (앰퍼샌드)
+s3 = s1 & s2
+s3 = s1.intersection(s2)
+print(s3)
+
+#       - 차집합
+#       s2에서 s1을 뺀 차집합을 구해보자. 
+s3 = s2.difference(s1)
+s3 = s2 - s1
+print(s3)
+
+#       - 집합에서 값 추가 : add
+s1 = {1,2,3,4,5,6}
+# 7을 추가한 다음에 s1출력
+s1.add(7)
+print(s1)
+
+#   5. set의 value 추가 : update()
+s1 = {1,2,3,4,5,6}
+s2 = {1,2,10,11,12}
+s1.update(s2)
+print(s1)
+
+#   6. set의 value 삭제 : set.remove(값), set.discard(값)
+s1 = {1,2,3,4,5,6}
+s1.remove(1)
+s1.discard(6)
+print(s1)
+
+# ================================================================
