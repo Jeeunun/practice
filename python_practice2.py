@@ -424,6 +424,103 @@ for a in range(1,11):
         lista.append(a)    
 print(lista)
 
+#   5. 문제 ) 1반에 수학점수가 60점이 넘으면 합격. 60점 미만이면 불합격.
+lista = [90,25,67,45,80]
+# 위 리스트가 학생의 번호순서대로 있을 때, 아래와 같이 출력하도록 코딩하여라. 
+# 출력 예시 : "1번학생은 합격입니다."
+for a in range(len(lista)):
+    if lista[a] >= 60:
+        print(f"{a+1}번째 학생은 합격입니다." )
+    else :
+        print(f"{a+1}번째 학생은 불합격입니다.")
+
+#   6. for문과 break 
+#       문제) 혈액형이 A형인 고객 선착순 1명만 찾는 상황.
+lista = ['b','b','ab','a','b','a']
+# 출력 결과 : n번째 고객이 이벤트에 당첨되었습니다.
+for a in range(len(lista)):
+    if lista[a] == 'a':
+        print(a+1,"번째 고객이 이벤트에 당첨되었습니다.")
+        print(f" {a+1} 번째 고객이 이벤트에 당첨되었습니다.")
+        break #하나만 출력된다.
+
+#   7. for문을 이용한 구구단
+#   문제) 구구단 5단을 출력해보자 예를 들어)
+#   5단 결과 출력 : 5X1 = 5.....5X10 = 50
+for a in range(1,11):
+    print(f'5*{a} = {5*a}')
+#   문제) 이중for문 - 구구단을 5단~9단까지 한꺼번에 출력
+# 방법1
+for a in range(5,10):
+    for b in range(1,11):
+        print(f'{a}X{b} = {a*b}')
+# 방법2
+a = 5
+while a <10:
+    for b in range(1,11):
+        print(f'{a}X{b} = {a*b}')
+        a+=1
+
+#   8. for문을 이용한 정렬 알고리즘
+#   1) 들어가기 앞서, 자리 바꾸기를 알아보자. 
+lista = [10,20,30,40] 
+temp = lista[0] #자리 바꾸기 전
+lista[0] = lista[1]
+lista[1] = temp #자리 바뀐 후
+print(lista)
+# 파이썬에서 지원하고 있는 문법
+lista[0],lista[1] = lista[1],lista[0]
+#   2) 정렬 알고리즘
+#   -sort() 내장함수 이용하는 방법
+
+#   -선택정렬 : 0번째 index부터 가장 작은 값을 채워나가는 방식
+#               첫번째 for문은 채워나가야 할 index를 의미
+#               두번째 for문은 비교의 대상이 되는 index를 의미
+lista = [93,45,21,30,20,94,66,71,45]
+for a in range(len(lista)-1):
+    for b in range(1,len(lista)):
+        if lista[a] > lista[b]:
+            temp = lista[a] #자리 바뀌기 전
+            lista[a] = lista[b]
+            lista[b] = temp #자리 바뀐 후
+print(lista)
+
+#   -버블정렬 
+def bubble_sort_ascending(data):
+    ## 총 교환 횟수를 기록하는 변수 (버블 정렬 원리 4)
+    n_swap = 0
+ 
+    ## 총 비교 횟수는 데이터 길이보다 1회 작게 이루어져야 함 (버블정렬 원리1)
+    for i in range(len(data) - 1):
+        
+        ## 정리된 데이터는 반복할 필요가 없기 때문에 i회를 제외 시킨다.
+        for i2 in range(len(data) - i - 1):
+ 
+            ## 버블 정렬을 오름차순 혹은 내림차순으로 결정할 수 있는 영역
+            if data[i2] > data[i2 + 1]:
+                
+                ## 순서를 바꿔 준 뒤에 교환이 이뤄졌음을 알린다.
+                data[i2], data[i2 + 1] = data[i2 + 1], data[i2]
+                n_swap += 1
+
+#   9. 프로그래머스 연습문제 : 행렬의 덧셈
+# 행렬의 덧셈은 행과 열의 크기가 같은 두 행렬의 같은 행, 
+# 같은 열의 값을 서로 더한 결과가 됩니다. 2개의 행렬 arr1과 arr2를 입력받아, 
+# 행렬 덧셈의 결과를 반환하는 함수, solution을 완성해주세요.
+arr1 = [[1,2,3],[4,5,6],[7,8,9]]
+arr2 = [[2,3,4],[5,6,7],[8,9,10]]
+# arr1[0][0]+arr2[0][0],arr1[0][1]+arr2[0][1],arr1[0][2]+arr2[0][2]....
+answer =[[]]
+for a in range(len(arr1)):
+    temp = []
+    for b in range(len(arr2)):
+        temp.append(arr1[a][b] + arr2[a][b])
+        answer.append(temp)
+    print(answer)
+
+
+
+
 # <제어문 - while문>
 #   1. while 조건식 : ~실행문 => 조건식이 참일 때 실행문 무한반복.
 #   2. 문제 ) 1~1000까지만 프린트 되도록 반복
@@ -469,4 +566,75 @@ print(len(lista))
 #   리스트의 크기가 6개인 리스트를 만들어서, 오늘의 로또번호를 만드어보자.
 #   랜덤의 값을 추출하는 파이썬 라이브러리 -> random
 import random
-random.randint(1,45)
+print(random.randint(1,45)) #print((int(random()*45) + 1)
+lista=[]
+listasize=1
+while listasize < 7:
+    randNum = random.randint(1,45)
+    lista.append(randNum)
+    listasize+=1
+print(lista) 
+
+# =================================================
+# <함수>
+#   1. 기본형태
+#   def 함수명(input값):
+#   계산식:
+#   return
+
+#   input값이 있어도 되고, 없어도 된다.
+#   return값이 있어도 되고, 없어도 된다. 
+
+#   2. 출력
+#   변수 = 함수명(input)
+#   print(변수)
+
+#   3. 문제) 함수 직접 구현해보기
+#   함수명은 myPlustFunc
+#   함수의 로직은 사용자의 input을 받아 input값의 누적합을 더하는 함수
+#   예를 들면 100을 입력하면 1+2+3+4....+100
+def myPlusFunc(numinput):
+    for a in range(1,numinput+1):
+        tot +=a
+        return tot 
+# 출력해보기
+result = myPlusFunc(10)
+print(result)
+
+#   4. 문제) 함수 직접 구현해보기
+# input값을 2개를 받아 2값을 더한 뒤, *2만큼 하여 return하는 함수를 만들어보자.
+# 그리고, 해당 함수를 호출하여 호출된 결과값을 result에 담아 출력해보자.
+def myPlusFunc(num1,num2):
+    calc = (num1+num2)*2
+    return calc
+
+result = myPlusFunc(10,20)
+print(result)
+
+#   5. 문제) 함수 직접 구현해보기
+# 리스트의 index함수를 쓰지 않고, for문 또는 while문을 통해 
+# 숫자 9가 몇 번째 인덱스에 있는 값인지 print해보자. 
+#   -1. index함수 사용한 경우
+lista = [1,4,6,9,9]
+print(lista.index(9))
+#   -2. for를 이용한 경우
+for a in range(len(lista)):
+    if lista[a] == 9:
+        print(a)
+        break
+#   -3. 함수로 구현
+# 위의 for문을 활용하여 myIndex라는 이름의 함수를 만들고자 한다.
+# input값이 2개 (list, 찾고자하는 값)
+# print는 함수내에서 하지 않고, return에 값을 담는다. 
+def myIndex(l, num):
+    for a in range(len(l)):
+        if l[a] == num:
+            return a
+# 출력해보기
+result = myIndex([1,2,3,4,5,6,7,8,9],5)
+print(result)
+
+# 다른방법
+lista = [1,4,6,9,9]
+def myIndex(i1,i2):
+    result =-1
