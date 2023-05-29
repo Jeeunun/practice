@@ -117,12 +117,21 @@ import random
 print(random.randint(1,45)) #print((int(random()*45) + 1)
 lista=[]
 listasize=1
-randNum = random.randint(1,45)
 while listasize < 7:
+    randNum = random.randint(1,45)
     lista.append(randNum)
     listasize+=1
 print(lista)
 
+import random
+lista = []
+for num in range(0,6):   
+    if num not in lista:
+        num = random.randint(1,45) 
+        lista.append(num)
+    else:
+        lista.remove(num)   #pop은 삭제할 인덱스값, remove는 삭제할 값
+print(lista)
 
 
 # 문제 : 월 4회 스터디를 하는데 3번은 온라인으로 하고 1번은 오프라인으로 하기로 했습니다. 아래 조건에 맞는 오프라인 모임 날짜를 정해주는 프로그램을 작성하시오
