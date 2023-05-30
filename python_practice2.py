@@ -738,4 +738,103 @@ print(a) #전역변수 10출력
     # Fn()
     # print(a) #전역변수 a가 없으므로 출력오류
 
+# ------------------------------------------------------
+# <그 외 함수>
+#   1. lambda함수 (lambda 매개변수 : 실행문)
+#   - 1)함수를 간편하게 표현하기 위한 방식
+def add(a,b):
+    return a+b
+print(add(1,2))
+#   -> 람다함수로 표현하기
+lambdaA = lambda a,b : a+b
+print(lambdaA)
+#   -> list에 lambda함수를 담아서 사용가능
+cal_list = [lambda a,b : a+b, lambda a,b : a-b, lambda a,b: a*b]
+print(cal_list[0](1,2))
+print(cal_list[1](1,2))
+print(cal_list[2](1,2))    
+#   -> dictionary에 lambda함수를 담어서 사용가능
+cal_list = {"plus":lambda a,b : a+b, "minus":lambda a,b : a-b, "multiply":lambda a,b: a*b}
+print(cal_list["plus"])
+print(cal_list["minus"])
+print(cal_list["multiply"])
+
+#   -2) 함수를 변수로 사용하기 위한 방식
+#   -> lambda로 입력한 매개변수가 짝수이면 True, 홀수이면 False
+# 예시 if else 쓸 수 있다.
+def TrueOrNot(x):
+    if x % 2 == 0:
+        return True
+    else:
+        return False
+TrueOrNot = lambda x : True if x % 2 ==0 else False
+
+#   2. map 함수 : 특정함수와 반복가능한 자료형을 입력받아, 특정함수가 수행한 결과값을 return
+#   map(함수, 리스트(또는 튜플 등등))
+#   - 예시
+def two_times(x):
+    return x*2
+print(list(map(two_times, [1,2,3,4])))
+#   - map함수와 lambda함수를 사용해서 입력한 list의 제곱값을 담은 리스트를 출력하도록 하자.
+print(list(map((lambda x: x**2), [2,4,6,8])))
+
+#   3. filter함수 : 대상이 되는 리스트에서 함수를 적용하여 참/거짓 조건으로 값을 걸러내는 것 -> 참인 것만 뽑음.
+#   filter(함수, 리스트(또는 튜플 등등))
+#   - 예시
+def trueOrNot(x):
+    if x>0 :
+        return True
+    else:
+        return False
+print(list(filter(trueOrNot, [-1,5,-7,-4])))
+print(list(filter(True if x>0 else False, [-1,5,-7,-4])))
+    # map과 비교
+    # lst = list(map(lambda x : True if x > 0 else False, [-1,0,3,-2,5]))
+    # print(lst)
+    # [False, False, True, False, True]
+    # =true false가 새로운 리스트에 담기게 된다. 
+#   -문제 ) # 함수형 프로그래밍(lambda,map,filter)을 사용하여, 주어진 list에서 홀수만 추출하도록 하여라.
+lista = [4,7,1,2,5,6,8]
+lst = list(filter(lambda x : True if x%2 != 0 else False, lista))
+print(lst)
+
+#   4. sum() : 주어진 자료들의 총합
+lista = [4,7,1,2,5,6,8]
+lst = list(filter(lambda x : True if x%2 != 0 else False, lista))
+sum_value = sum(lst)
+print(sum_value)
+
+#   5. ord() : 문자를 아스키코드로 변환 / chr() : 코드를 문자로 변환
+
+#   6. abs() : 절대값 구하기
+print(abs(-3)) #3
+#   문) map을 사용해서 주어진 리스트를 절대값으로 변환한 리스트를 출력해보자. 
+lista = [1,-5,12,-5]
+lst = list(map(abs,lista))
+print(lst)
+
+    # - 함수를 안쓰고 for 반복문으로도 풀어보기
+lista = [1,-5,12,-5]
+for a in range(len(lista)):
+    if lista[a] < 0 :
+        lista[a] = abs(lista[a])
+print(lista)
+
+# ----------------------------------------------------
+#  <재귀함수>
+#  -전형적인 예제 :factorial
+def solution(n):
+    total = 1
+    for a in range(1,n+1):
+        total*=a
+    return total
+#     출력해보기
+n = int(input("숫자를 입력하세요: "))
+answer = solution(n)
+print(answer)
+#   - 재귀함수란 함수내에서 함수자기자식을 호출하는 방식
+#   - 재귀함수에서는 반드시 재귀함수를 종료시키는 조건이 들어가야 한다. 
+
+
+
 
