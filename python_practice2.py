@@ -649,11 +649,11 @@ print(a)
 
 #   7. return이 필요한 경우와 아닌 경우
 def hello1():
-    print("hello1 python") #함수'식'이 없어
+    print("hello1 python") #'식'이 없어
 hello1()
 
 def hello2():
-    result = "hello2 python" #함수'식'
+    result = "hello2 python" #'식'을 변수로 받아.
     return result #return값이 있어야 함수식에서 떠돌지 않아.
 result = hello2() 
 print(result)
@@ -835,6 +835,293 @@ print(answer)
 #   - 재귀함수란 함수내에서 함수자기자식을 호출하는 방식
 #   - 재귀함수에서는 반드시 재귀함수를 종료시키는 조건이 들어가야 한다. 
 
+#   -재귀함수 만들어보기
+
+# -------------------------------------------------------
+#  <Class>
+#   1. 사용이유 :
+#   -1) 같은 기능의 함수의 집합
+#   -2) 객체를 만들기 위해 사용
+#   - 명명규칙 : 일반적으로 클래스는 대문자 알파벳으로 / 변수명, 함수명은 소문자로
+
+#   2. 예시)
+#   - 사칙연산 함수가 있을 때 Calculator라는 클래스에 모아둘 수 있다.
+class Calculator: #class 이름 = Calculator
+    def plus(a,b): #class내에 선언된 함수 = 메서드
+        return a+b
+    def minus(a,b):
+        return a-b 
+    def multiply(a,b):
+        return a*b
+    def divide(a,b):
+        return a/b 
+print(Calculator.plus(10,20)) 
+#       -> 이 클래스의 문제점 : 누적된 값을 변수로 갖고 있지 않다.
+
+#   3. 클래스 변수 접근 방법
+#   - 클래스 변수 접근가능 방법1 : 클래스명.변수
+#   - 클래스 변수 접근가능 방법2 : classmethod데코레이터 사용
+#   - 예시)
+class Calculator:
+    result = 0 #누적값을 변수로 만든다.
+    @classmethod #@classmethod선언 
+                #인스턴스 메서드가 객체의 인스턴스 필드를 self를 통해 엑세스할 수 있는 반면, 
+                # 정적 메서드는 이러한 self 파라미터를 갖지 않고 인스턴스 변수에 엑세스할 수 없다. 
+                # 따라서, 정적 메서드는 보통 객체 필드와 독립적이지만 로직상 클래스내에 포함되는 메서드에 사용된다. 
+                # 정적 메서드는 메서드 앞에 @staticmethod 라는 Decorator를 표시하여 해당 메서드가 정적 메서드임을 표시한다
+    def plus(cls,a): #classmethod데코레이터 => self가 아닌 cls로
+        cls.result+=a #Calculator함수에 누적변수result => result값에 계속해서 누적 가능.
+    def minus(a):
+        Calculator.result-=a
+    def multiply(a):
+        Calculator.result*=a 
+    def divide(a):
+        Calculator.result/=a       
+print(Calculator.result)
+Calculator.plus(10)
+print(Calculator.result)
+Calculator.minus(5)
+print(Calculator.result)
+
+#   4. 객체와 인스턴스
+#   - 객체 : 클래스의 복제본 ex. 객체(aCompany)
+#   - 인스턴스 : 객체와 클래스의 관계를 설명할 때 인스턴스를 사용  ex. Calculator 클래스의 인스턴스는 aCompany
+
+#   - 객체 사용이유 - 클래스의 중복 제거 (=변수와 함수의 재활용의 어려움 해결)
+#   - 객체 형식의 클래스의 기본구조 (instance method)
+class Calculator:
+    # 객체가 생성될때 init은 가장 먼저 실행된다.
+    # 생성자는 객체생성될 때 객체변수를 초기화. 
+    # result와 self.result는 다른 값이다. => result(지역변수) / self.result(객체의 변수)
+    def __init__(self): # 생성자(__init__) 선언
+        self.result=0   # 최초값(객체변수의 초기화)
+    # 객체를 만들 때 매서드 내의 첫번째 매개변수는 객체(self)를 의미한다. 
+    def plus(self,a):
+        self.result+=a 
+    def minus(self,a):
+        self.result-=a
+    def multiply(self,a):
+        self.result*=a 
+    def divide(self,a):
+        self.result/=a    
+
+aCompany = Calculator() #객체가 만들어짐 => Calculator의 복제본. => aCompany의 Calculator => self = aCompany
+aCompany.plus(100)
+bCompany = Calculator() #객체가 만들어짐 => Calculator의 복제본. => bCompany의 Calculator => self = bCompany
+bCompany.plus(100) 
+print(aCompany.result)
+print(bCompany.result) 
+
+#   5. 옵션주기 : 클래스생성 시 매개변수(a)를 통해 초기값 세팅가능
+class Calculator:
+    def __init__(self,a): 
+        self.result=a   
+    def plus(self,a):
+        self.result+=a 
+    def minus(self,a):
+        self.result-=a
+    def multiply(self,a):
+        self.result*=a 
+    def divide(self,a):
+        self.result/=a    
+aCompany = Calculator(1000)
+print(aCompany.result)
+aCompany = Calculator(2000)
+print(bCompany.result) 
+
+#   6. 문제) person이라는 클래스를 만든다. 생성자로 이름(name), 나이(age), 성별(gender), email이라는 매개변수를 받아 각각의 객체변수를 만든다. 
+# register 메서드를 만들어서 해당메서드에서는 myInfo라는 객체변수에 이름, 나이, 성별, email정보를 문자열로 담는다. 
+# 2명의 person을 만든다.
+
+class Person: #person 클래스
+    def __init__(self,name, age, gender, email): #self(객체)/name,age,gender,email(생성변수)
+        self.name = name    #객체의 변수 = 생성변수
+        self.age = age
+        self.gender = gender
+        self.email = email
+    def register(self): # 클래스의 메서드 
+       self. myInfo = "이름:{}, 나이:{}, 성별:{}, 이메일:{}.". format(self.name, self.age, self.gender, self.email)
+
+p1 = Person('홍길동', '25','남자','1234@naver.com')
+p2 = Person('손흥민', '30', '남자','5678@gmail.com')
+
+p1.register()
+p2.register()
+
+print(p1.myInfo)
+print(p2.myInfo)
+
+#   + 회원가입일 추가하기 = datetime 이용
+import datetime
+register_date = str(datetime.datetime.now())
+print(register_date[:11])
+
+class Person:
+    def __init__(self, name, age, gender, email):
+        self.name = name
+        self.age = age
+        self.gender = gender
+        self.email = email
+        self.register_date = str(datetime.datetime.now())
+    def register(self):
+        self. myInfo = "이름:{}, 나이:{}, 성별:{}, 이메일:{}, 회원가입일:{}". format(self.name, self.age, self.gender, self.email, self.register_date)
+
+p1 = Person('홍길동', '25','남자','1234@naver.com')
+p2 = Person('손흥민', '30', '남자','5678@gmail.com')
+
+p1.register()
+p2.register()
+
+print(p1.myInfo)
+print(p2.myInfo)       
+
+#   5. 클래스 상속
+#   - 부모 클래스에서의 기능을 자식클래스에서 물려받는 것.
+#   - 자식클래스 선언 형식: class 자식클래스명(부모클래스명)
+# -부모클래스-
+class Calculator:
+    def __init__(self):
+        self.result = 0
+    def plus(self,a):
+        self.result+=a
+    def minus(self,a):
+        self.result-=a
+    def multiply(self,a):
+        self.result*=a
+# -자식클래스-
+class CalculatorChild(Calculator):
+        # 1) 자식클래스의 init설정할 수 있다. (=부모클래스의 init을 덮어쓰는 것.)
+        # def __init__(self):
+        #     self.result = 100 
+    def divide(self,a):
+        self.result/=a
+        # 2)자식클래스만의 메서드 사용가능.
+    def multiply(self,a):
+        self.result*=(a+1)
+        # 3) 부모클래스의 메서드를 자식클래스의 메서드로 재정의 할 수 있다. (*overriding) 
+        #  = 부모에게 있는 기능을 재선언하게 되면 부모의 기능보다 자식의 기능이 우선
+
+# ------------------------------------------------------------------------------
+# <예외처리 : try except 구문>
+#   1. 예외처리를 해야하는 이유는 뭘까?
+#   - 프로그램 실행 중간에 예외가 발생하더라도 프로그램이 강제종료되지 않도록 하기 위해
+#   -> 현실에서 빈번하게 발생할 수 있는 경우(사용자input, DB조회) 예외처리를 한다.
+
+#   2. 예시
+while True:
+    try:
+        first = int(input("분자를 입력하세요: "))
+        second = int(input("분모를 입력하세요: "))
+        print(first/second) 
+    except:
+        print("오류입니다.")
+    finally:
+        print("결과를 확인해주세요.")
+        #=> except를 좀 더 명확하게 보여주기 위해
+# 수정
+while True:
+    try:
+        first = int(input("분자를 입력하세요: "))
+        second = int(input("분모를 입력하세요: "))
+        print(first/second) 
+    except ZeroDivisionError as zd:
+        print(f"{zd} 오류입니다.") 
+    except ValueError as ve:
+        print(f"{ve} 오류입니다.")
+    except Exception:
+        print(f"{Exception} 오류입니다.")
+    finally:
+        print("결과를 확인해주세요.")
+
+#   3. 에러 강제 예시
+#       - 방법
+while True:
+    raise Exception
+#       - 예시
+class Bird:
+    def fly(self):
+        raise Exception
+    
+class Eagle(Bird):
+    pass
+
+eagle1 = Eagle() #객체만들기
+eagle1.fly() #함수적용 => 출력 : Exception => 오버라이딩 강제
+
+# -->  자식클래스로 하여금 overriding 재정의 유도 해준다. 
+class Bird:
+    def fly(self):
+        raise Exception
+    
+class Eagle(Bird):
+    def fly(self):
+        print("fly fly")
+    pass
+
+eagle1 = Eagle() 
+eagle1.fly()
+
+# ---------------------------------------------------
+# <Module>
+#   1. 방법
+#   - import하고 싶은 모듈이 있으면 import구문 사용
+#   - from 패키지명 import 파일명 / import 패키지명.파일명
+#   - as를 사용하여 약어로도 사용가능
+
+# ----------------------------------------------------
+# <파이썬으로 file만들기>
+#   1. open: file시스템 입출력 라이브러리 
+#       -open함수는 mode(w,r,a)을 갖고 있다. 
+#       -open을 했을 때 해당 파일명이 없으면 자동생성
+f = open("test.txt","w")
+f.close()
+
+#   2. w옵션 : write
+f = open("test.txt","w", encoding="UTF-8") #encoding="UTF-8" => 한글이 안깨지게 해준다.
+for i in range(0,10):
+    data = "%d번째 줄입니다. \n" %i
+    f.write(data)   #file에 data 덮어쓰기
+f.close()   
+#   3. r옵션 : read
+#   1. readline = 첫번째 줄만 가져오는 함수
+f = open("test.txt","r",encoding="UTF-8")
+line = f.readline()
+print(line)
+f.close() #0번째 줄입니다. 
+
+#   2. readlines : 데이터를 리스트형태로 라인별로 담아준다.
+f = open("test.txt","w",encoding="UFT-8")
+lines = f.readlines
+print(lines)
+
+#   3. read : 데이터를 한꺼번에 문자열로 담아준다.
+f = open("test.txt","w",encoding="UFT-8")
+lines = f.readlines
+print(lines)
+
+# read보다 readlines을 쓴다 => 데이터 parsing이 편하기 때문에
 
 
+#   4.  while, if문으로 readline으로 전체 출력
+# 방법1
+line = f.readline
+while line: #line이 없으면 False로 인식 -> 멈춤
+    print(line)
+    line = f.readline
+f.close()
 
+# 방법2
+while True:
+    line = f.readline()
+    print(line)
+    if not line:
+        break
+f.close()
+
+#   4. a옵션 : c (추가모드)
+f = open("test.txt","a",encoding="UTF-8")
+# 0~9번째 줄입니다. -> 10번째~19번째 줄입니다. 
+for i in range(10,20):
+    data = "%d번째 줄입니다. \n" %i     
+    f.write(data)
+f.close()
