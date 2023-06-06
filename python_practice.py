@@ -239,102 +239,118 @@
 # # 돈이 많으면 행복하니까 빈 자리는 ^로 채워주기
 # print("{0:^<+30,}".format(10000000000000000))
 
-# 키보드로 반지름의 길이를 입력받고, 
-# 원의 넓이를 구하는 함수를 만들어 결과를 출력하라.
-def width(num1):
-    result = num1**2*3.14
-    return result
-num1 = int(input("반지름의 길이를 입력하세요: "))
-a = width(num1)
-print(a)
+# # 키보드로 반지름의 길이를 입력받고, 
+# # 원의 넓이를 구하는 함수를 만들어 결과를 출력하라.
+# def width(num1):
+#     result = num1**2*3.14
+#     return result
+# num1 = int(input("반지름의 길이를 입력하세요: "))
+# a = width(num1)
+# print(a)
 
-# return이 필요한 경우와 아닌 경우
-def hello1():
-    print("hello1 python") #함수'식'이 없어
-hello1()
+# # return이 필요한 경우와 아닌 경우
+# def hello1():
+#     print("hello1 python") #함수'식'이 없어
+# hello1()
 
-def hello2():
-    result = "hello2 python" #함수'식'
-    return result #return값이 있어야 함수식에서 떠돌지 않아.
-result = hello2() 
-print(result)
+# def hello2():
+#     result = "hello2 python" #함수'식'
+#     return result #return값이 있어야 함수식에서 떠돌지 않아.
+# result = hello2() 
+# print(result)
 
-# 입력값의 개수가 정해져있지 않고 multiple한 함수
-def sum(*args):
-    total = 0
-    for a in args:
-        total+=a
-    return total
+# # 입력값의 개수가 정해져있지 않고 multiple한 함수
+# def sum(*args):
+#     total = 0
+#     for a in args:
+#         total+=a
+#     return total
 
-result = sum(2,5,7)
-print(result)
+# result = sum(2,5,7)
+# print(result)
 
-# 2개 이상의 리턴값이 있는 경우 : 튜플형태로 데이터 return
-def cal(a,b):
-    result1 = a+b
-    result2 = a-b
-    result3 = a*b
-    return result1,result2,result3
-calValue = cal(1,2)
-for x in range(len(calValue)):
-    print(f"계산한 {x+1}번째 값: {calValue[x]}")
+# # 2개 이상의 리턴값이 있는 경우 : 튜플형태로 데이터 return
+# def cal(a,b):
+#     result1 = a+b
+#     result2 = a-b
+#     result3 = a*b
+#     return result1,result2,result3
+# calValue = cal(1,2)
+# for x in range(len(calValue)):
+#     print(f"계산한 {x+1}번째 값: {calValue[x]}")
 
-# 함수에서 default값 세팅
-# default값 세팅하는 대표적인 예시가 print함수
-print('hello',end=' ')
-print('world')
-# 출력 : hello world (end =''는 print의 default값 줄바꿈을 없앤다.)
+# # 함수에서 default값 세팅
+# # default값 세팅하는 대표적인 예시가 print함수
+# print('hello',end=' ')
+# print('world')
+# # 출력 : hello world (end =''는 print의 default값 줄바꿈을 없앤다.)
 
-# 매개변수의 순서를 안맞추고도 원하는 매개변수의 자리에 값을 넣어 함수 호출
-def whoAreYou(name, age, gender):
-    print(f"제 이름은 {name}이고, 나이는 {age},성별은 {gender}입니다.")
-whoAreYou(age=19, name='홍길동', gender='남자')
+# # 매개변수의 순서를 안맞추고도 원하는 매개변수의 자리에 값을 넣어 함수 호출
+# def whoAreYou(name, age, gender):
+#     print(f"제 이름은 {name}이고, 나이는 {age},성별은 {gender}입니다.")
+# whoAreYou(age=19, name='홍길동', gender='남자')
 
-# 지역변수와 전역변수
-# 지역변수 : 함수 내에서 사용하는 변수. 함수 호출 뒤 사라진다.
-# 전역변수 : 함수 밖에서 사용하는 변수. 
-# 예시
-a = 1   #전역변수
-def Fn():
-    a = 2 #지역변수
-    print(a) #지역변수 2 출력
-Fn() #지역변수 2 출력
-print(a) #전역변수 1 출력 => 지역변수는 함수 호출 뒤 사라짐 => 전역변수만 남게 된다.
-# 예시
-a = 100 
-c = 200
-def sum(a,b,c): 
-    result = a+b +c
-    return result
-result = sum(10,20,30) 
-# sum함수 지역변수 a,b,c
-print(result) 
-# 전역변수 a=100, c=200
-print(a) # 100
-print(c) #200
-#a,c가 각각 100,200이 나온 이유는 지역변수가 함수 실행후 종료되었기 때문에
+# # 지역변수와 전역변수
+# # 지역변수 : 함수 내에서 사용하는 변수. 함수 호출 뒤 사라진다.
+# # 전역변수 : 함수 밖에서 사용하는 변수. 
+# # 예시
+# a = 1   #전역변수
+# def Fn():
+#     a = 2 #지역변수
+#     print(a) #지역변수 2 출력
+# Fn() #지역변수 2 출력
+# print(a) #전역변수 1 출력 => 지역변수는 함수 호출 뒤 사라짐 => 전역변수만 남게 된다.
+# # 예시
+# a = 100 
+# c = 200
+# def sum(a,b,c): 
+#     result = a+b +c
+#     return result
+# result = sum(10,20,30) 
+# # sum함수 지역변수 a,b,c
+# print(result) 
+# # 전역변수 a=100, c=200
+# print(a) # 100
+# print(c) #200
+# #a,c가 각각 100,200이 나온 이유는 지역변수가 함수 실행후 종료되었기 때문에
 
-# 전역변수를 지역변수로 사용하기 위해선 => global + 전역변수
-a = 100 
-c = 200
-def sum(a,b): 
-    global c
-    result = a+b +c
-    return result
-result = sum(10,20) 
-print(result) 
+# # 전역변수를 지역변수로 사용하기 위해선 => global + 전역변수
+# a = 100 
+# c = 200
+# def sum(a,b): 
+#     global c
+#     result = a+b +c
+#     return result
+# result = sum(10,20) 
+# print(result) 
 
-# 전역변수가 없는데 global로 전역변수를 만들 수 있다.
-def Fn():
-    global a
-    a = 10
-    print(a)
-Fn()
-print(a) #전역변수 10출력
-    # # 비교 : 
-    # def Fn():
-    #     a = 10 #지역변수 
-    #     print(a)
-    # Fn()
-    # print(a) #전역변수 a가 없으므로 출력오류
+# # 전역변수가 없는데 global로 전역변수를 만들 수 있다.
+# def Fn():
+#     global a
+#     a = 10
+#     print(a)
+# Fn()
+# print(a) #전역변수 10출력
+#     # # 비교 : 
+#     # def Fn():
+#     #     a = 10 #지역변수 
+#     #     print(a)
+#     # Fn()
+#     # print(a) #전역변수 a가 없으므로 출력오류
 
+
+# def searchRecur(searchDir):
+#     dirList = os.listdir(searchDir)
+#     if not dirList:
+#         return                      #파일이 없을 때 return(함수 종료)
+#     for dir in dirList: 
+#         filename = os.path.join(searchDir, dir)                                            
+#         if os.path.isdir(filename):
+#             searchRecur(filename)
+#         dirTuple = os.path.splitext(dir)
+#         if(dirTuple[1]=='.py'):
+#             fullPath = os.path.join(searchDir, dir)
+#         print(fullPath)
+
+# searchDir = r'C:\Users\한지은\OneDrive\바탕 화면\한지은'
+# searchRecur(searchDir)

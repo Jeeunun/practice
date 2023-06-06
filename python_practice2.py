@@ -1077,7 +1077,7 @@ f = open("test.txt","w")
 f.close()
 
 #   2. w옵션 : write
-f = open("test.txt","w", encoding="UTF-8") #encoding="UTF-8" => 한글이 안깨지게 해준다.
+f = open("test.txt","w", encoding="UTF-8") #encoding="UTF-8" => 컴퓨터가 인식가능할 수 있는 숫자로 변환시켜주는 것.
 for i in range(0,10):
     data = "%d번째 줄입니다. \n" %i
     f.write(data)   #file에 data 덮어쓰기
