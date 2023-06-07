@@ -175,13 +175,13 @@
 # <최빈값 구하기>
 
 # def solution(array):
-array = [1,2,3,3,3,4]     
-dict ={}
-for i in array:
-    if i not in dict:
-        dict[i] = 1
-    else:
-        dict[i] += 1
+# array = [1,2,3,3,3,4]     
+# dict ={}
+# for i in array:
+#     if i not in dict:
+#         dict[i] = 1
+#     else:
+#         dict[i] += 1
 #     answer = 0
 #     if len(dict)==1 : 
 #         answer = list(dict.keys())[0]
@@ -234,3 +234,43 @@ for i in array:
 # import math
 # a,b = 10,15
 # math.gcd(a,b)
+# --------------------------
+# <피자 나눠먹기 (2) >
+# n = 4
+# for i in range(max(n,6),(n*6)+1):
+#     if i % n == 0 and i % 6 ==0:
+#         print(i//6)
+#         break
+
+# def solution(n):
+#     for i in range(max(n,6),(n*6)+1):
+#         if i % n == 0 and i % 6 ==0 : 
+#             answer = (i // 6)
+#             break
+#     return answer
+# ------------------------
+# <자릿수 더하기>
+# n=930211
+# lista = list((str(n)))
+# listb = list(map(int, lista))
+# sum = 0
+# for a in listb:
+#     sum = sum +a
+# print(sum)
+
+# from functools import reduce
+# print(reduce(lambda x,y : x+y, listb))
+
+# -------------------
+# <순서쌍의 개수>
+# n = 100
+# list = []
+# for a in range(1,n+1):
+#     if n % a == 0:
+#         list.append(a)
+# print(len(list))
+
+
+
+    
+
