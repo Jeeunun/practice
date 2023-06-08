@@ -269,8 +269,61 @@
 #     if n % a == 0:
 #         list.append(a)
 # print(len(list))
+# ----------------
+# <직각삼각형 출력하기>
+# n=3
+# for a in range(1,n+1):
+#     print(a*'*')    
+# ----------------
+# <문자 반복 출력하기>
+# my_string = "hello"
+# n = 3
 
+# for i in list(my_string):
+#     print(i*n, end='')
 
-
+# def solution(my_string, n):
+#     return ''.join(i*n for i in my_string)
     
+# answer = []
+# for i in my_string:
+#     answer.append(i*n)
+# print (''.join(answer))
+# ------------------
+#  <숨어있는 숫자의 덧셈(1)> - 더 간단한 식으로 표현할 수 있나.?
+# my_string = "aAb1B2cC34oOp"
+# answer = ""
+# for a in my_string:
+#     if (97<=ord(a)<=122) or (65<=ord(a)<=90):
+#         my_string.replace(a,'')
 
+# print(ord('1')) #49
+# print(ord('9')) #57
+
+def solution(my_string):
+    lista = []
+    for a in list(my_string):
+        if 49 <= ord(a) <= 57:
+            lista.append(a)
+            listb = list(map(int,lista))
+    answer = 0
+    for b in listb:
+        answer = answer + b
+    return answer
+
+# def solution(my_string):
+#     answer = 0
+#     for i in my_string:
+#         try:
+#             answer = answer + int(i)
+#         except:
+#             pass
+
+#     return answer
+a=[1,2,3,4]
+def solution(a:list):
+    b=a[:]
+    return b
+print(a)
+print(solution(a))
+print(id(a),id(solution(a)))
