@@ -300,16 +300,16 @@
 # print(ord('1')) #49
 # print(ord('9')) #57
 
-def solution(my_string):
-    lista = []
-    for a in list(my_string):
-        if 49 <= ord(a) <= 57:
-            lista.append(a)
-            listb = list(map(int,lista))
-    answer = 0
-    for b in listb:
-        answer = answer + b
-    return answer
+# def solution(my_string):
+#     lista = []
+#     for a in list(my_string):
+#         if 49 <= ord(a) <= 57:
+#             lista.append(a)
+#             listb = list(map(int,lista))
+#     answer = 0
+#     for b in listb:
+#         answer = answer + b
+#     return answer
 
 # def solution(my_string):
 #     answer = 0
@@ -320,10 +320,89 @@ def solution(my_string):
 #             pass
 
 #     return answer
-a=[1,2,3,4]
-def solution(a:list):
-    b=a[:]
-    return b
-print(a)
-print(solution(a))
-print(id(a),id(solution(a)))
+# ----------------------
+# <외계행성의 나이>
+# lista = ['a','b','c','d','e','f','g','h','i','j']
+# age = 23
+# # 나이를 쪼개기 -> [2,3](int) ->lista의 인덱스값으로 result출력.
+# age_list = list(map(int, str(age)))
+# answer = []
+# # print(age_list)
+# for x in age_list: #x=2,3
+#     for y in range(0,len(lista)+1): #y=0,1,2,3,4,5,6,7,8,9 
+#         if x==y:
+#             answer.append(lista[x])
+# print(''.join(answer))
+# -------------------------
+# <진료 순서 정하기>
+# result = []
+# emergency = [3, 76, 24]
+# emergency2 = emergency  
+# emergency2.sort(reverse=True)
+# for i in emergency:
+#     for j in emergency2:
+#         if i == j:
+#             i = emergency2.index(j) + 1
+#             answer = ''.join((str(i)))
+#             result.append(answer)
+# print(result)
+
+# answer = []
+# # result의 요소는 emergency의 내림차 순으로 정리된 인덱스 값+1.
+# for i in range(1,len(emergency)+1): #i = 1,2,3
+#     emergency.sort(reverse=True) #76,24,3    
+#     answer.append(emergency.index(i))
+#     print(answer)
+# # ---------------------------------
+# <개미군단>
+# 장군개미는 공격력 5
+# 병정개미는 공격력 3
+# 일개미는 공격력 1
+# 최소한의 병력
+# 23 = > 5*4+3*1 => 장군개미4 + 병정개미 1 => 총 5
+
+# !!왜 이건 안될까?
+# def solution(hp):
+#     if hp % 5 == 0:
+#         return (hp//5)
+#     elif hp % 5 != 0 and (hp%5) % 3 == 0:
+#         return ((hp//5) + ((hp%5) // 3))
+#     elif hp%5 != 0 and (hp%5)%3 != 0 and ((hp%5)%3)%1 == 0:
+#         return ((hp//5) + ((hp%5) // 3) + (((hp%5) // 3) //1))
+
+# def solution(hp):
+#     x = hp // 5
+#     y = (hp-(5*x))//3
+#     z = (hp-(5*x)-(3*y))//1    
+#     return x+y+z
+# ---------------------------------
+# <모스부호(1)>
+morse = { 
+    '.-':'a','-...':'b','-.-.':'c','-..':'d','.':'e','..-.':'f',
+    '--.':'g','....':'h','..':'i','.---':'j','-.-':'k','.-..':'l',
+    '--':'m','-.':'n','---':'o','.--.':'p','--.-':'q','.-.':'r',
+    '...':'s','-':'t','..-':'u','...-':'v','.--':'w','-..-':'x',
+    '-.--':'y','--..':'z'
+}
+# letter = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..",
+#           "--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."}
+
+
+# for i in letter.split(' '):
+#     for key, value in morse.items():
+#         if i == key:
+#             print(" ".join(value), end = '')
+
+
+def solution(letter): 
+    for i in letter.split(' '):
+        for key, value in morse.items():
+            if i == key:
+                return value
+result = solution(".--. -.-- - .... --- -.")
+print(result)
+
+# ----------------
+# <가위바위보>
+가위 = 2, 바위 = 0 , 보 = 5
+
